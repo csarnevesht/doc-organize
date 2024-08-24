@@ -1,26 +1,31 @@
+// src/App.tsx
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SplashScreen from './components/SplashScreen';
+import LoginSignup from './components/LoginSignup';
+import ProfileCompletion from './components/ProfileCompletion';
+import MyDocs from './components/MyDocs';
+import UploadDocument from './components/UploadDocument';
+import DocumentSharing from './components/DocumentSharing';
+import DocSummarization from './components/DocSummarization';
+import { AuthProvider } from './context/AuthContext';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SplashScreen />} />
+          <Route path="/login" element={<LoginSignup />} />
+          <Route path="/profile-completion" element={<ProfileCompletion />} />
+          <Route path="/my-docs" element={<MyDocs />} />
+          <Route path="/upload-document" element={<UploadDocument />} />
+          <Route path="/document-sharing" element={<DocumentSharing />} />
+          <Route path="/doc-summarization" element={<DocSummarization />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
